@@ -22,7 +22,7 @@
             const token = window.location.href.split('=')[2];
             const data = await fetchData(token);
 
-            if (data) {
+            if (data.pairs) {
                 const dexscreenerHeader = document.createElement('img');
                 dexscreenerHeader.className = 'dexscreener';
                 dexscreenerHeader.width = "400";
@@ -83,6 +83,8 @@
                 bannerContainer.appendChild(linksContainer);
                 targetDiv.before(bannerContainer);
                 bannerAdded = true;
+            }else{
+                console.log('dexscreener not updated')
             }
         }
     }
@@ -97,7 +99,7 @@
             const data = await response.json();
             return data;
         } catch (error) {
-            alert("Error fetching data: " + error.message);
+            console.log("Error fetching data: " + error.message);
             return null;
         }
     }
