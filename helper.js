@@ -31,19 +31,18 @@
                 const bannerContainer = document.createElement('div');
                 bannerContainer.className = 'banner-container';
 
-                // Style for flex container
                 bannerContainer.style.display = 'flex';
                 bannerContainer.style.flexDirection = 'column';
                 bannerContainer.style.alignItems = 'center';
 
                 const linksContainer = document.createElement('div');
-                linksContainer.style.display = 'flex'; // Display links in a row
-                linksContainer.style.flexWrap = 'wrap'; // Wrap if necessary
-                linksContainer.style.justifyContent = 'center'; // Center-align
+                linksContainer.style.display = 'flex';
+                linksContainer.style.flexWrap = 'wrap';
+                linksContainer.style.justifyContent = 'center';
 
                 if (data.pairs[0].info.websites && data.pairs[0].info.websites.length > 0) {
                     const websiteLink = document.createElement('a');
-                    websiteLink.href = data.pairs[0].info.websites[0];
+                    websiteLink.href = data.pairs[0].info.websites[0].url;
                     websiteLink.textContent = 'Website';
                     websiteLink.target = '_blank';
                     websiteLink.style.marginRight = '10px'; // Add spacing
@@ -66,7 +65,17 @@
                     twitterLink.href = twitterUrl;
                     twitterLink.textContent = 'Twitter';
                     twitterLink.target = '_blank';
+                    twitterLink.style.marginRight = '10px';
                     linksContainer.appendChild(twitterLink);
+                }
+
+                const dexscreenerUrl = data.pairs[0].url;
+                if (dexscreenerUrl) {
+                    const dexscreenerLink = document.createElement('a');
+                    dexscreenerLink.href = dexscreenerUrl;
+                    dexscreenerLink.textContent = 'Dexscreener';
+                    dexscreenerLink.target = '_blank';
+                    linksContainer.appendChild(dexscreenerLink);
                 }
 
                 bannerContainer.appendChild(dexscreenerHeader);
